@@ -56,6 +56,28 @@ TRACE_EVENT(kvm_exit,
 		__entry->htinst)
 );
 
+TRACE_EVENT(kvm_riscv_vcpu_trap_redirect,
+	TP_PROTO(struct kvm_cpu_trap *trap),
+	TP_ARGS(trap),
+
+	TP_STRUCT__entry(
+		__field(unsigned long, sepc)
+		__field(unsigned long, scause)
+		__field(unsigned long, stval)
+	),
+
+	TP_fast_assign(
+		__entry->sepc		= trap->sepc;
+		__entry->scause		= trap->scause;
+		__entry->stval		= trap->stval;
+	),
+
+	TP_printk("SEPC:0x%lx, SCAUSE:0x%lx, STVAL:0x%lx",
+		__entry->sepc,
+		__entry->scause,
+		__entry->stval)
+);
+
 #endif /* _TRACE_RSICV_KVM_H */
 
 #undef TRACE_INCLUDE_PATH
