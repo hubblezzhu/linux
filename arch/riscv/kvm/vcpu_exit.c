@@ -10,7 +10,6 @@
 #include <asm/csr.h>
 #include <asm/insn-def.h>
 
-#define CREATE_TRACE_POINTS
 #include "trace.h"
 
 static int gstage_page_fault(struct kvm_vcpu *vcpu, struct kvm_run *run,
