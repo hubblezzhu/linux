@@ -37,7 +37,7 @@ TRACE_EVENT(page_fault,
 #undef TRACE_INCLUDE_PATH
 #define TRACE_INCLUDE_PATH .
 #undef TRACE_INCLUDE_FILE
-#define TRACE_INCLUDE_FILE trace
+#define TRACE_INCLUDE_FILE exceptions
 
 /* This part must be outside protection */
 #include <trace/define_trace.h>
