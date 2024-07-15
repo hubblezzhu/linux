@@ -41,6 +41,7 @@ TRACE_EVENT(page_fault_kernel,
 
 	TP_STRUCT__entry(
 		__field(unsigned long, address)
+		__field(unsigned long, epc)
 		__field(unsigned long, cause)
 	),
 
