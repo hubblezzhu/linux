@@ -24,12 +24,12 @@ TRACE_EVENT(page_fault,
 	),
 
 	TP_fast_assign(
-		__entry->address	= regs->addr;
-		__entry->cause		= regs->scause;
+		__entry->address	= regs->badaddr;
+		__entry->cause		= regs->cause;
 	),
 
 	TP_printk("address=%ps cause=0x%lx",
-		  (void *)__entry->address, (void *)__entry->cause)
+		  (void *)__entry->address, __entry->cause)
 );
 
 #undef TRACE_INCLUDE_PATH
