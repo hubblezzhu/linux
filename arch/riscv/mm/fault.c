@@ -22,6 +22,10 @@
 
 #include "../kernel/head.h"
 
+
+#define CREATE_TRACE_POINTS
+#include <asm/trace/exceptions.h>
+
 static void die_kernel_fault(const char *msg, unsigned long addr,
 		struct pt_regs *regs)
 {
@@ -234,6 +238,8 @@ void handle_page_fault(struct pt_regs *regs)
 
 	tsk = current;
 	mm = tsk->mm;
+
+	trace_page_fault(regs);
 
 	if (kprobe_page_fault(regs, cause))
 		return;
