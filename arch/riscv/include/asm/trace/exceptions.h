@@ -14,7 +14,7 @@
 #undef TRACE_SYSTEM
 #define TRACE_SYSTEM exceptions
 
-TRACE_EVENT(page_fault,
+TRACE_EVENT(page_fault_user,
 	TP_PROTO(struct pt_regs *regs),
 	TP_ARGS(regs),
 
@@ -28,7 +28,25 @@ TRACE_EVENT(page_fault,
 		__entry->cause		= regs->cause;
 	),
 
-	TP_printk("address=%ps cause=0x%lx",
+	TP_printk("user page fault, address=%ps cause=0x%lx",
+		  (void *)__entry->address, __entry->cause)
+);
+
+TRACE_EVENT(page_fault_kernel,
+	TP_PROTO(struct pt_regs *regs),
+	TP_ARGS(regs),
+
+	TP_STRUCT__entry(
+		__field(unsigned long, address)
+		__field(unsigned long, cause)
+	),
+
+	TP_fast_assign(
+		__entry->address	= regs->badaddr;
+		__entry->cause		= regs->cause;
+	),
+
+	TP_printk("kernel page fault, address=%ps cause=0x%lx",
 		  (void *)__entry->address, __entry->cause)
 );
 
