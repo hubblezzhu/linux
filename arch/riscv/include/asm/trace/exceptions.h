@@ -30,9 +30,9 @@ TRACE_EVENT(page_fault_user,
 		__entry->cause		= regs->cause;
 	),
 
-	TP_printk("user page fault, address=%ps ip=%ps cause=0x%lx",
-		  (void *)__entry->address, (void *)__entry->epc,
-		  __entry->cause)
+	TP_printk("user page fault, address=%ps epc=%ps cause=0x%lx",
+			(void *)__entry->address, (void *)__entry->epc,
+			__entry->cause)
 );
 
 TRACE_EVENT(page_fault_kernel,
@@ -51,9 +51,9 @@ TRACE_EVENT(page_fault_kernel,
 		__entry->cause		= regs->cause;
 	),
 
-	TP_printk("kernel page fault, address=%ps cause=0x%lx",
-		  (void *)__entry->address, (void *)__entry->epc,
-		  __entry->cause)
+	TP_printk("kernel page fault, address=%ps epc=%ps cause=0x%lx",
+			(void *)__entry->address, (void *)__entry->epc,
+			__entry->cause)
 );
 
 #undef TRACE_INCLUDE_PATH
